@@ -52,8 +52,7 @@ public class V2ApiController implements V2Api {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                log.info("catalogGet instance");
-                return new ResponseEntity<Catalog>(objectMapper.readValue("{\"empty\": false}", Catalog.class), HttpStatus.OK);
+                return new ResponseEntity<Catalog>(objectMapper.readValue("{\"empty\": false}", Catalog.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Catalog>(HttpStatus.INTERNAL_SERVER_ERROR);
