@@ -166,7 +166,7 @@ public class V2ApiController implements V2Api {
             try {
                 log.info("Response Instance Provisioning");
                 System.out.println("Response Instance Provisioning from the sysout");
-                return new ResponseEntity<ServiceInstanceProvisionResponse>(objectMapper.readValue("{\n  \"metadata\" : {\n    \"attributes\" : { },\n    \"labels\" : { }\n  },\n  \"dashboard_url\" : \"dashboard_url\"\n}", ServiceInstanceProvisionResponse.class), HttpStatus.OK);
+                return new ResponseEntity<ServiceInstanceProvisionResponse>(objectMapper.readValue("\"dashboard_url\" : \"http://www.ibm.com\", \"description\"   : \"Your service is being created asynchronously.\", \"operation\"     : \"Provision_45\"}", ServiceInstanceProvisionResponse.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<ServiceInstanceProvisionResponse>(HttpStatus.INTERNAL_SERVER_ERROR);
