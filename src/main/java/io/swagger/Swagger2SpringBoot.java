@@ -15,8 +15,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackages = { "io.swagger", "io.swagger.api" , "io.swagger.configuration"})
+@ComponentScan(basePackages = { "io.swagger", "io.swagger.api", "io.swagger.configuration" })
 public class Swagger2SpringBoot implements CommandLineRunner {
+
+    @Configuration
+    public class RequestLoggingFilterConfig {
+
+        @Bean
+        public CommonsRequestLoggingFilter logFilter() {
+            CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+            filter.setIncludeQueryString(true);
+            filter.setIncludePayload(true);
+            filter.setMaxPayloadLength(10000);
+            filter.setIncludeHeaders(false);
+            filter.setAfterMessagePrefix("REQUEST DATA : ");
+            return filter;
+        }
+    }
 
     @Override
     public void run(String... arg0) throws Exception {
